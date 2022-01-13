@@ -7,6 +7,7 @@ import javax.persistence.Id;
 public class User {
 	@Id
 	private String mobileNumber;
+	
 	private String fname;
 	private String lname;
 	private String dob;

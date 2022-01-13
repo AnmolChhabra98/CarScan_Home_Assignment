@@ -24,10 +24,14 @@ public class UserServiceImplementation implements UserService {
 	//save a user to database
 	@Override
 	public String saveUser(User user) {
-		userRepo.save(user);
-		return user.getFname()+ " info saved successfully.";
+		if(userRepo.existsById(user.getMobileNumber())) {
+			return user.getFname()+ " data already exists.";
+		}else {
+			userRepo.save(user);
+			return user.getFname()+ " data saved successfully.";
+		}
 	}
-	
+
 	//update a user in database
 	@Override
 	public String updateUser(User user) {
