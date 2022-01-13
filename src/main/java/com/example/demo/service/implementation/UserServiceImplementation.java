@@ -1,6 +1,7 @@
 package com.example.demo.service.implementation;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,14 +40,20 @@ public class UserServiceImplementation implements UserService {
 			userRepo.save(user);
 			return user.getFname()+ " data updated successfully.";
 		}else {
-			return "unable to find any user with mobile number " + user.getMobileNumber();
+			return "No such user exists.";
 		}
 	}
 
 	//delete a user from database
 	@Override
-	public String deleteUser(User user) {
-		userRepo.delete(user);
-		return user.getFname()+ " info deleted successfully.";
+	public String deleteUser(String id) {
+		Optional<User> user = userRepo.findById(id);
+		if(user.isPresent()) {
+			String name = user.get().getFname();
+			userRepo.deleteById(id);
+			return name+ " user data deleted successfully.";	
+		}else {
+			return "No such user exists.";
+		}
 	}
 }

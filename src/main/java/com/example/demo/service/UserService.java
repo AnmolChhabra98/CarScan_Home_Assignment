@@ -11,5 +11,5 @@ public interface UserService {
 	ArrayList<User> getAllUsers();
 	String saveUser(User user);
 	String updateUser(User user);
-	String deleteUser(User user);
+	String deleteUser(String id);
 }
