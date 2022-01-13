@@ -6,7 +6,7 @@ import com.example.demo.model.User;
 
 public interface UserService {
 	
-	//These are the only methods, which can be implemented from Service layer.
+	//These are the only methods, which must be implemented from Service layer.
 	
 	ArrayList<User> getAllUsers();
 	String saveUser(User user);

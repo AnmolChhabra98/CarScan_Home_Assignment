@@ -22,7 +22,7 @@ public class UserServiceImplementation implements UserService {
 		return (ArrayList<User>) userRepo.findAll();
 	}
 
-	//save a user to database
+	//save a user in database if user doesn't exists.
 	@Override
 	public String saveUser(User user) {
 		if(userRepo.existsById(user.getMobileNumber())) {
@@ -33,7 +33,7 @@ public class UserServiceImplementation implements UserService {
 		}
 	}
 
-	//update a user in database
+	//update a user in database if exists.
 	@Override
 	public String updateUser(User user) {
 		if(userRepo.existsById(user.getMobileNumber())) {
@@ -44,7 +44,7 @@ public class UserServiceImplementation implements UserService {
 		}
 	}
 
-	//delete a user from database
+	//delete a user from database if exists.
 	@Override
 	public String deleteUser(String id) {
 		Optional<User> user = userRepo.findById(id);
