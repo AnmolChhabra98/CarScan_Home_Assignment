@@ -35,8 +35,12 @@ public class UserServiceImplementation implements UserService {
 	//update a user in database
 	@Override
 	public String updateUser(User user) {
-		userRepo.save(user);
-		return user.getFname()+ " info updated successfully.";
+		if(userRepo.existsById(user.getMobileNumber())) {
+			userRepo.save(user);
+			return user.getFname()+ " data updated successfully.";
+		}else {
+			return "unable to find any user with mobile number " + user.getMobileNumber();
+		}
 	}
 
 	//delete a user from database
